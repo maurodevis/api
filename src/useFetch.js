@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 
+
 export function useFetch(url){ 
 const [data, setData] = useState(null);
 const [error, setError] = useState(null);
 
+
+
 useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjgxMTNFNTExLTJCNTEtNDNBNi1BRTU0LTg3RkVFMDBDOTU0NiIsImVtYWlsIjoianVhbi5yYW5nZWxAZmluYW56YXV0by5jb20uY28iLCJzdWIiOiJqdWFuLnJhbmdlbEBmaW5hbnphdXRvLmNvbS5jbyIsImp0aSI6IjQ0ODVkNWJhLThmNTctNGQwNS1iMWI4LTg5ODIyNTk0NTk1MSIsInJvbGUiOiJBZG1pbmlzdHJhdG9yIiwibmJmIjoxNzA3MjU2MTczLCJleHAiOjE3MDcyNTczNzMsImlhdCI6MTcwNzI1NjE3M30.3Pqh7a4Guru2l_irPu8khePiGKo4XFc2e0Vr8P8fZvo';
-        
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjgxMTNFNTExLTJCNTEtNDNBNi1BRTU0LTg3RkVFMDBDOTU0NiIsImVtYWlsIjoianVhbi5yYW5nZWxAZmluYW56YXV0by5jb20uY28iLCJzdWIiOiJqdWFuLnJhbmdlbEBmaW5hbnphdXRvLmNvbS5jbyIsImp0aSI6IjM1MGMyNzMzLTYwYjUtNDExMy05OWM0LWExOGNlYTk0MWZmZSIsInJvbGUiOiJBZG1pbmlzdHJhdG9yIiwibmJmIjoxNzA3MzM3NDc0LCJleHAiOjE3MDczMzg2NzQsImlhdCI6MTcwNzMzNzQ3NH0.u0m-2IUqxLZjLOr2a-PZDitWPTLXvv093l0-OENxyJU';
+        //const arreglo_data = []
+
         const response = await fetch(url , {
           method: 'GET',
           headers: {
@@ -23,6 +27,8 @@ useEffect(() => {
 
         const responseData = await response.json();
         setData(responseData);
+        arreglo_data = data;
+        //console.log(arreglo_data)
       } catch (error) {
         ((error) => setError(error))
       }
@@ -30,6 +36,7 @@ useEffect(() => {
 
     fetchData();
   }, []);
+
   
   return {data};
 }

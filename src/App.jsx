@@ -9,11 +9,24 @@ function App() {                          //https://jsonplaceholder.typicode.com
       <div className='App'>
         <h1>consulta de usuarios</h1>
           
-            {data?.map((user)=> (
-            <ul key={user.id}>
-               <p>Nombre : { user.name}</p> 
-               <p>Apellido : {user.lastName}</p>  
-            </ul>))}
+        {data && (
+        <table>
+          <thead>
+            <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'>
+              <th>Nombre</th>
+              <th>Apellido</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((user) => (
+              <tr key={user.id}>
+                <td className=''>{user.name}</td>
+                <td>{user.lastName}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
       </div>
       <h1>consulta de vehiculos</h1>
     </>
