@@ -1,36 +1,34 @@
-import { useFetch } from './useFetch'
-import './App.css'
+import React, { useEffect, useState } from 'react';
 
-function App() {                          //https://jsonplaceholder.typicode.com/users    //https://www.finanzauto.info/Carfiao.Inventario
-  const {data, loading, error} = useFetch("https://www.finanzauto.info/Carfiao.Inventario/api/Account/GetUsers")
+const App = () => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://www.finanzauto.info/Carfiao.Inventario/api/Vehicle/GetVehiclesByFilters?PageIndex=10&PageSize=1');
+        const jsonData = await response.json();
+        console.log()
+        setData(jsonData);
+        
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, ); // El segundo parámetro [] asegura que useEffect se ejecute solo una vez al montar el componente.
 
   return (
-    <>
-      <div className='App'>
-        <h1>consulta de usuarios</h1>
-          
-        {data && (
-        <table>
-          <thead>
-            <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'>
-              <th>Nombre</th>
-              <th>Apellido</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((user) => (
-              <tr key={user.id}>
-                <td className=''>{user.name}</td>
-                <td>{user.lastName}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-      </div>
-      <h1>consulta de vehiculos</h1>
-    </>
-  )
-}
+    <div>
+    {data ? (
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    ) : (
+      <p>Cargando datos...</p>
+    )}
+  </div>
+  );
+};
 
-export default App
+export default App;
+
