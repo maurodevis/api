@@ -47,7 +47,7 @@ const App = () => {
         <li>Año de vehiculo {dato.model} </li>
         <li>Kilometraje de vehiculo: {dato.mileage} </li>
         <li>Placa del vehiculo: {dato.licencePlate} </li>
-        <img src={dato.routeImageMain} alt="imgen vehiculo" />
+        <img src={dato.routeImageMain} alt="imgen vehiculo"/>
       </ul>
     )
     )} 
